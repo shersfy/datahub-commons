@@ -17,7 +17,6 @@ import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.FastDateFormat;
 import org.shersfy.datahub.commons.constant.ConstCommons;
-import org.shersfy.datahub.commons.constant.ConstCommons.RenameType;
 import org.shersfy.datahub.commons.exception.DatahubException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +32,102 @@ public class FileUtil {
 	public static final int BUFSIZE = 1024 * 8;
 	
 	private FileUtil(){}
+	
+	 /***
+     * 文件名重命名类型
+     *
+     */
+    public static enum RenameType{
+        
+        None(""),
+        Number("_1"),
+        Timestamp("_yyyyMMdd_HHmmss");
+        
+        private String format;
+        
+        RenameType (){
+        }
+        RenameType (String format){
+            this.format = format;
+        }
+        
+        public static RenameType indexOf(int index){
+            switch (index) {
+            case 1:
+                return None;
+            case 2:
+                return Number;
+            case 3:
+                return Timestamp;
+            default:
+                break;
+            }
+            return None;
+        }
+        
+        public int index(){
+            return this.ordinal()+1;
+        }
+        
+        public String getFormat() {
+            return format;
+        }
+        public void setFormat(String format) {
+            this.format = format;
+        }
+    }
+    
+    /**文件大小单位换算**/
+    public static enum FileSizeUnit{
+        Byte, KB, MB, GB, TB, PB, Auto;
+        
+        /**
+         * 计算单位
+         * @param len 文件大小, 单位byte(B)
+         * @return 返回单位
+         */
+        public static FileSizeUnit countUnit(long len){
+            
+            if(len >= Math.pow(1024, PB.ordinal())){
+                return PB;
+            }
+            
+            if(len >= Math.pow(1024, TB.ordinal())){
+                return TB;
+            }
+            
+            if(len >= Math.pow(1024, GB.ordinal())){
+                return GB;
+            }
+            
+            if(len >= Math.pow(1024, MB.ordinal())){
+                return MB;
+            }
+            
+            if(len >= Math.pow(1024, KB.ordinal())){
+                return KB;
+            }
+            
+            return Byte;
+        }
+        
+        /**
+         * 计算字节数
+         * 
+         * @param len 文件大小
+         * @param unit 单位
+         * @return 返回字节数(单位byte)
+         */
+        public static long countBytes(long len, FileSizeUnit unit){
+            if(unit == null || unit == FileSizeUnit.Auto){
+                return len;
+            }
+            
+            long blen = (long) Math.pow(1024, unit.ordinal());
+            blen = len * blen;
+            return blen;
+        }
+    }
 
 	public static File createDirIfNotExists(String dir) {
 		File file = new File(dir);
@@ -243,56 +338,6 @@ public class FileUtil {
 		return flag;
 	}
 
-	public static enum FileSizeUnit{
-		Byte, KB, MB, GB, TB, PB, Auto;
-		
-		/**
-		 * 计算单位
-		 * @param len 文件大小, 单位byte(B)
-		 * @return 返回单位
-		 */
-		public static FileSizeUnit countUnit(long len){
-			
-			if(len >= Math.pow(1024, PB.ordinal())){
-				return PB;
-			}
-			
-			if(len >= Math.pow(1024, TB.ordinal())){
-				return TB;
-			}
-			
-			if(len >= Math.pow(1024, GB.ordinal())){
-				return GB;
-			}
-			
-			if(len >= Math.pow(1024, MB.ordinal())){
-				return MB;
-			}
-			
-			if(len >= Math.pow(1024, KB.ordinal())){
-				return KB;
-			}
-			
-			return Byte;
-		}
-		
-		/**
-		 * 计算字节数
-		 * 
-		 * @param len 文件大小
-		 * @param unit 单位
-		 * @return 返回字节数(单位byte)
-		 */
-		public static long countBytes(long len, FileSizeUnit unit){
-			if(unit == null || unit == FileSizeUnit.Auto){
-				return len;
-			}
-			
-			long blen = (long) Math.pow(1024, unit.ordinal());
-			blen = len * blen;
-			return blen;
-		}
-	}
 	
 	/**
 	 * 文件大小单位换算

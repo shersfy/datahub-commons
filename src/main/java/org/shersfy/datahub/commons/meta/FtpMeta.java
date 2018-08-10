@@ -1,7 +1,5 @@
 package org.shersfy.datahub.commons.meta;
 
-import org.shersfy.datahub.commons.constant.ConstCommons.FTPProtocolType;
-
 public class FtpMeta extends BaseMeta {
 	/** 主机名称 **/
 	private String host;
@@ -13,6 +11,28 @@ public class FtpMeta extends BaseMeta {
     private String password;
     /** 协议类型 **/
     private FTPProtocolType protocolType;
+    /**FTP协议类型**/
+    public static enum FTPProtocolType{
+
+        /**简单文件传输协议**/
+        FTP,
+        /**SSH文件传输协议**/
+        SFTP;
+
+        public static FTPProtocolType indexOf(int index){
+            switch (index) {
+            case 1:
+                return FTP;
+            case 2:
+                return SFTP;
+            }
+            return FTP;
+        }
+        
+        public int index(){
+            return this.ordinal()+1;
+        }
+    }
 
     public FtpMeta() {
 		super();
@@ -26,6 +46,7 @@ public class FtpMeta extends BaseMeta {
     	this.userName = userName;
     	this.password = password;
     }
+    
 
 	public String getUserName() {
         return userName;
