@@ -1,6 +1,6 @@
 package org.shersfy.datahub.commons.params.template;
 
-import org.shersfy.datahub.commons.constant.Const.TarFileHandleType;
+import org.shersfy.datahub.commons.constant.ConstCommons.TarFileHandleType;
 
 public class HiveMoveParamsFrom extends DbMoveParamsFrom{
 	

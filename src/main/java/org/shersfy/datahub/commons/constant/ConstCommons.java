@@ -4,9 +4,9 @@ package org.shersfy.datahub.commons.constant;
  * 常量
  *
  */
-public class Const {
+public class ConstCommons {
 
-    private Const(){
+    private ConstCommons(){
     }
 
 

@@ -1,8 +1,8 @@
 package org.shersfy.datahub.commons.params.template;
 
-import org.shersfy.datahub.commons.constant.Const;
-import org.shersfy.datahub.commons.constant.Const.RenameType;
-import org.shersfy.datahub.commons.constant.Const.TarFileHandleType;
+import org.shersfy.datahub.commons.constant.ConstCommons;
+import org.shersfy.datahub.commons.constant.ConstCommons.RenameType;
+import org.shersfy.datahub.commons.constant.ConstCommons.TarFileHandleType;
 import org.shersfy.datahub.commons.meta.HdfsMeta;
 
 public class HdfsParams extends BaseJobParam{
@@ -32,7 +32,7 @@ public class HdfsParams extends BaseJobParam{
 	
 	public HdfsParams(){
 		this.isAppend	= true;
-		this.columnSep 	= Const.COLUMN_SEP;
+		this.columnSep 	= ConstCommons.COLUMN_SEP;
 		this.replaceEnter = false;
 		this.replacement = "";
 		this.merge = false;

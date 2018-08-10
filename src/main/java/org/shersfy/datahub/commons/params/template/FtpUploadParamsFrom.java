@@ -1,7 +1,7 @@
 package org.shersfy.datahub.commons.params.template;
 
-import org.shersfy.datahub.commons.constant.Const.RenameType;
-import org.shersfy.datahub.commons.constant.Const.SrcFileHandleType;
+import org.shersfy.datahub.commons.constant.ConstCommons.RenameType;
+import org.shersfy.datahub.commons.constant.ConstCommons.SrcFileHandleType;
 public class FtpUploadParamsFrom extends BaseJobParam{
 	
 	

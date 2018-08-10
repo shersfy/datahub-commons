@@ -1,7 +1,7 @@
 package org.shersfy.datahub.commons.params.template;
 
-import org.shersfy.datahub.commons.constant.Const;
-import org.shersfy.datahub.commons.constant.Const.HiveTableFormat;
+import org.shersfy.datahub.commons.constant.ConstCommons;
+import org.shersfy.datahub.commons.constant.ConstCommons.HiveTableFormat;
 
 public class HiveParams extends BaseJobParam{
 	
@@ -41,7 +41,7 @@ public class HiveParams extends BaseJobParam{
 	private int tableType;
 	
 	public HiveParams(){
-		this.columnSep 		= Const.COLUMN_SEP;
+		this.columnSep 		= ConstCommons.COLUMN_SEP;
 		this.replaceEnter 	= false;
 		this.replacement 	= " ";
 		this.tableType 		= HiveTableFormat.text.index();

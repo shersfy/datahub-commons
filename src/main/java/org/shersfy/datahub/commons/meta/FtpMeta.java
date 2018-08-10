@@ -1,6 +1,6 @@
 package org.shersfy.datahub.commons.meta;
 
-import org.shersfy.datahub.commons.constant.Const.FTPProtocolType;
+import org.shersfy.datahub.commons.constant.ConstCommons.FTPProtocolType;
 
 public class FtpMeta extends BaseMeta {
 	/** 主机名称 **/
