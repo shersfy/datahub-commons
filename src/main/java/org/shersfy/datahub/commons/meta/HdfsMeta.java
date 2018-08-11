@@ -4,11 +4,6 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * HDFS元信息
- * @author PengYang
- * @date 2017-02-08
- *
- * @copyright
- * Copyright Lenovo Corporation 2017 All Rights Reserved.
  */
 public class HdfsMeta extends BaseMeta{
 	

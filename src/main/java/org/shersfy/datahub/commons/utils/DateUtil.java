@@ -34,9 +34,6 @@ public class DateUtil {
 	/**
 	 * 指定格式, 格式化时间
 	 * 
-	 * @author PengYang
-	 * @date 2017-05-09
-	 * 
 	 * @param milliseconds 毫秒数
 	 * @param format  指定格式, d天(可选) h小时 m分 s秒 S毫秒(可选)
 	 * @return String
@@ -350,9 +347,6 @@ class TimeObject{
 	
 	/**
 	 * 指定格式, 格式化时间
-	 * 
-	 * @author PengYang
-	 * @date 2017-05-09
 	 * 
 	 * @param format 指定格式，d 天(可选) hh小时 mm分 ss秒 SSS毫秒(可选)
 	 * @return String

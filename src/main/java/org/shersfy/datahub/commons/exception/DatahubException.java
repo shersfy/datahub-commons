@@ -104,9 +104,6 @@ public class DatahubException extends Exception{
     /**
      * 限制异常信息行数
      * 
-     * @author PengYang
-     * @date 2017-05-03
-     * 
      * @param limit 行数限制
      * @return String
      */

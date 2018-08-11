@@ -1,10 +1,6 @@
 package org.shersfy.datahub.commons.meta;
 /**
  * 数据加载方式
- * @author PengYang
- * @date 2017-03-14
- *
- * @copyright Copyright Lenovo Corporation 2017 All Rights Reserved.
  */
 public enum LoadType {
 

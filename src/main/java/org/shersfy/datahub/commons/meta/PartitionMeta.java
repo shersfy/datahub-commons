@@ -5,10 +5,6 @@ import java.util.List;
 
 /**
  * 分区字段及分区值
- * @author PengYang
- * @date 2017-03-13
- *
- * @copyright Copyright Lenovo Corporation 2017 All Rights Reserved.
  */
 public class PartitionMeta extends BaseMeta {
 	

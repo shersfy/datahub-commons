@@ -312,9 +312,6 @@ public class Page<T> {
 	/**
 	 * 设置除了data以外的其它属性
 	 * 
-	 * @author PengYang
-	 * @date 2016-08-18
-	 * 
 	 * @param newp
 	 * @param page
 	 * @return Page

@@ -4,11 +4,6 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * 表类型
- * @author PengYang
- * @date 2017-01-03
- *
- * @copyright
- * Copyright Lenovo Corporation 2017 All Rights Reserved.
  */
 public enum TableType {
 	/**表**/
