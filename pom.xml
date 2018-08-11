@@ -22,6 +22,7 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.7.0</version>
 				<configuration>
+					<encoding>UTF-8</encoding>
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
@@ -75,40 +76,19 @@
 			<artifactId>fastjson</artifactId>
 			<version>${fastjson.version}</version>
 		</dependency>
+		<!-- mvn install:install-file -DgroupId=chardet -DartifactId=chardet -Dversion=1.0 
+		-Dfile=F:/git/datahub/datahub-commons/libext/chardet-1.0.jar -Dpackaging=jar -DgeneratePom=true-->
 		<dependency>
 			<groupId>chardet</groupId>
 			<artifactId>chardet</artifactId>
 			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/libext/chardet-1.0.jar</systemPath>
 		</dependency>
+		<!-- mvn install:install-file -DgroupId=cpdetector -DartifactId=cpdetector -Dversion=1.0.10
+		-Dfile=F:/git/datahub/datahub-commons/libext/cpdetector_1.0.10.jar -Dpackaging=jar -DgeneratePom=true-->
 		<dependency>
 			<groupId>cpdetector</groupId>
 			<artifactId>cpdetector</artifactId>
 			<version>1.0.10</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/libext/cpdetector_1.0.10.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>jargs</groupId>
-			<artifactId>jargs</artifactId>
-			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/libext/jargs-1.0.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc6</artifactId>
-			<version>6</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/libext/ojdbc6.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>jdk.tools</groupId>
-			<artifactId>jdk.tools</artifactId>
-			<version>1.8</version>
-			<scope>system</scope>
-			<systemPath>${JAVA_HOME}/lib/tools.jar</systemPath>
 		</dependency>
 	</dependencies>
 </project>
