@@ -9,7 +9,10 @@ public class ConstCommons {
     private ConstCommons(){
     }
 
-
+    /**最小时间1900-01-01 0:0:0.0**/
+    public static final long MIN_DATE = -2209017600000L;
+    /**最大时间9999-12-31 23:59:59.999**/
+    public static final long MAX_DATE = 253402271999999L;
     /**年份类型: yyyy**/
     public static final String yyyy     = "yyyy";
     /**年月类型: yyyyMM**/

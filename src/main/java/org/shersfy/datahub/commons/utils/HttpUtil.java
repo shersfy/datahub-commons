@@ -580,12 +580,17 @@ public class HttpUtil {
 	        JSONObject json = JSON.parseObject(JsonPropertiesParser.parseToJsonString(prop));
 	        this.url = json.getString("url");
 	        this.method = json.getString("method");
+	        this.method = StringUtils.isBlank(this.method)?"get":this.method;
 	        
-	        this.header.putAll(json.getObject("header", Map.class));
+	        if(json.get("header")!=null) {
+	            this.header.putAll(json.getObject("header", Map.class));
+	        }
 	        
 	        JSONObject jparams = json.getJSONObject("params");
-	        for(String key:jparams.keySet()) {
-	            this.params.add(new BasicNameValuePair(key, jparams.getString(key)));
+	        if(jparams!=null) {
+	            for(String key:jparams.keySet()) {
+	                this.params.add(new BasicNameValuePair(key, jparams.getString(key)));
+	            }
 	        }
 	        
 	    }
