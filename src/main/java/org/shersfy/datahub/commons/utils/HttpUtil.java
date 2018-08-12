@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
@@ -16,8 +17,10 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
@@ -49,6 +52,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * http请求工具类
@@ -544,6 +548,80 @@ public class HttpUtil {
 	        this.limit = limit;
 	    }
 
+	}
+	
+	public static class HttpParamsLoader {
+	    
+	    private String url;
+	    private String method;
+	    private Map<String, String> header;
+	    private List<NameValuePair> params;
+	    
+	    /**
+	     * 从配置文件中加载配置参数
+	     * @param filename 配置文件路径
+	     */
+	    @SuppressWarnings("unchecked")
+	    public HttpParamsLoader(String filename) {
+	        this.params = new ArrayList<>();
+	        this.header = new HashMap<>();
+	        
+	        Properties prop = new Properties();
+	        InputStreamReader input = null;
+	        try {
+	            input = new InputStreamReader(new FileInputStream(filename), "UTF-8");
+	            prop.load(input);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            IOUtils.closeQuietly(input);
+	        }
+	           
+	        JSONObject json = JSON.parseObject(JsonPropertiesParser.parseToJsonString(prop));
+	        this.url = json.getString("url");
+	        this.method = json.getString("method");
+	        
+	        this.header.putAll(json.getObject("header", Map.class));
+	        
+	        JSONObject jparams = json.getJSONObject("params");
+	        for(String key:jparams.keySet()) {
+	            this.params.add(new BasicNameValuePair(key, jparams.getString(key)));
+	        }
+	        
+	    }
+	    
+	    public String getUrl() {
+	        return url;
+	    }
+	    public void setUrl(String url) {
+	        this.url = url;
+	    }
+	    public String getMethod() {
+	        return method;
+	    }
+	    public void setMethod(String method) {
+	        this.method = method;
+	    }
+	    public List<NameValuePair> getParams() {
+	        return params;
+	    }
+	    public void setParams(List<NameValuePair> params) {
+	        this.params = params;
+	    }
+
+	    public Map<String, String> getHeader() {
+	        return header;
+	    }
+
+	    public void setHeader(Map<String, String> header) {
+	        this.header = header;
+	    }
+
+	    @Override
+	    public String toString() {
+	        return JSON.toJSONString(this);
+	    }
+	    
 	}
 
 }
