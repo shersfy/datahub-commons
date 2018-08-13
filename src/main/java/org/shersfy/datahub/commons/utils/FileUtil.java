@@ -16,7 +16,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.FastDateFormat;
-import org.shersfy.datahub.commons.constant.ConstCommons;
+import org.shersfy.datahub.commons.constant.CommConst;
 import org.shersfy.datahub.commons.exception.DatahubException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -153,7 +153,7 @@ public class FileUtil {
 		} else {
 			filePrefix = fileName;
 		}
-		String format = "_" + ConstCommons.FOLDER_TIMESTAMP;
+		String format = "_" + CommConst.FOLDER_TIMESTAMP;
 		String timestamp = FastDateFormat.getInstance(format).format(new Date());
 		String chars = RandomStringUtils.randomNumeric(3);
 		return filePrefix + timestamp + chars + fileSuffix;
@@ -166,7 +166,7 @@ public class FileUtil {
 	 * @return 字符串
 	 */
 	public synchronized static String createTimestampWithRandom(int randomCnt){
-		return DateUtil.format(ConstCommons.FOLDER_TIMESTAMP)+RandomStringUtils.randomNumeric(randomCnt);
+		return DateUtil.format(CommConst.FOLDER_TIMESTAMP)+RandomStringUtils.randomNumeric(randomCnt);
 	}
 	
 	/**
@@ -180,12 +180,12 @@ public class FileUtil {
 		if(StringUtils.isBlank(parent)){
 			return StringUtils.EMPTY;
 		}
-		String folder = DateUtil.format(ConstCommons.FOLDER_TIMESTAMP)+RandomStringUtils.randomNumeric(3);
+		String folder = DateUtil.format(CommConst.FOLDER_TIMESTAMP)+RandomStringUtils.randomNumeric(3);
 		File dir = new File(parent, folder);
 		int i=1;
 		while(i<count){
 			if(dir.isDirectory()){
-				folder = DateUtil.format(ConstCommons.FOLDER_TIMESTAMP)+RandomStringUtils.randomNumeric(3);
+				folder = DateUtil.format(CommConst.FOLDER_TIMESTAMP)+RandomStringUtils.randomNumeric(3);
 				dir = new File(parent, folder);
 			}
 			else{
@@ -212,7 +212,7 @@ public class FileUtil {
 		
 		StringBuffer name = new StringBuffer(0);
 		name.append(FilenameUtils.getBaseName(fileName));
-		name.append(DateUtil.format(ConstCommons.FOLDER_TIMESTAMP));
+		name.append(DateUtil.format(CommConst.FOLDER_TIMESTAMP));
 		name.append(RandomStringUtils.randomNumeric(count));
 		name.append(".");
 		name.append(FilenameUtils.getExtension(fileName));
@@ -223,7 +223,7 @@ public class FileUtil {
 			while(i<count){
 				name.setLength(0);
 				name.append(FilenameUtils.getBaseName(fileName));
-				name.append(DateUtil.format(ConstCommons.FOLDER_TIMESTAMP));
+				name.append(DateUtil.format(CommConst.FOLDER_TIMESTAMP));
 				name.append(RandomStringUtils.randomNumeric(count));
 				name.append(".");
 				name.append(FilenameUtils.getExtension(fileName));

@@ -4,9 +4,9 @@ package org.shersfy.datahub.commons.constant;
  * 常量
  *
  */
-public class ConstCommons {
+public class CommConst {
 
-    private ConstCommons(){
+    private CommConst(){
     }
 
     /**最小时间1900-01-01 0:0:0.0**/
