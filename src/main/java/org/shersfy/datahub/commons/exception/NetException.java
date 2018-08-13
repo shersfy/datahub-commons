@@ -1,6 +1,6 @@
 package org.shersfy.datahub.commons.exception;
 
-public class NetException extends Exception {
+public class NetException extends DatahubException {
 
 	/**
 	 * 网络异常
@@ -9,11 +9,6 @@ public class NetException extends Exception {
 
 	public NetException() {
 		super();
-	}
-
-	public NetException(String message, Throwable cause, boolean enableSuppression,
-			boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
 	}
 
 	public NetException(String message, Throwable cause) {

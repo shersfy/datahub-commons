@@ -19,13 +19,13 @@ public class ConstCommons {
     public static final String yyyyMM   = "yyyy/MM";
     /**日期统一格式:yyyy/MM/dd**/
     public static final String yyyyMMdd         = "yyyy/MM/dd";
-    /**文件夹时间戳格式**/
+    /**文件夹时间戳格式:yyyyMMddHHmmssSSS**/
     public static final String FOLDER_TIMESTAMP = "yyyyMMddHHmmssSSS";
-    /**数据转string日期格式**/
+    /**数据转string日期格式:yyyy-MM-dd**/
     public static final String FORMAT_DATE      = "yyyy-MM-dd";
-    /**数据转string日期时间格式**/
+    /**数据转string日期时间格式:yyyy-MM-dd HH:mm:ss**/
     public static final String FORMAT_DATETIME  = "yyyy-MM-dd HH:mm:ss";
-    /**数据转string日期时间格式**/
+    /**数据转string日期时间格式:yyyy-MM-dd HH:mm:ss.SSS**/
     public static final String FORMAT_TIMESTAMP = "yyyy-MM-dd HH:mm:ss.SSS";
     /**日期时间统一格式:yyyy/MM/dd HH:mm:ss**/
     public static final String yyyyMMddHHmmss   = "yyyy/MM/dd HH:mm:ss";

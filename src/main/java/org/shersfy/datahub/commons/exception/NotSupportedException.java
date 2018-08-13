@@ -1,6 +1,6 @@
 package org.shersfy.datahub.commons.exception;
 
-public class NotSupportedException extends Exception {
+public class NotSupportedException extends DatahubException {
 
 	/**
 	 * 不支持的异常
@@ -9,11 +9,6 @@ public class NotSupportedException extends Exception {
 
 	public NotSupportedException() {
 		super();
-	}
-
-	public NotSupportedException(String message, Throwable cause, boolean enableSuppression,
-			boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
 	}
 
 	public NotSupportedException(String message, Throwable cause) {

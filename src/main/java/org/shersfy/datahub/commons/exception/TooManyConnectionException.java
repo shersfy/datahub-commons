@@ -1,6 +1,6 @@
 package org.shersfy.datahub.commons.exception;
 
-public class TooManyConnectionException extends Exception {
+public class TooManyConnectionException extends DatahubException {
 
 	/**
 	 * 连接过多异常
@@ -9,11 +9,6 @@ public class TooManyConnectionException extends Exception {
 
 	public TooManyConnectionException() {
 		super();
-	}
-
-	public TooManyConnectionException(String message, Throwable cause, boolean enableSuppression,
-			boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
 	}
 
 	public TooManyConnectionException(String message, Throwable cause) {
