@@ -27,7 +27,7 @@ public class AesUtil {
 
 	private static final String AES		= "AES";
 	/**默认加密种子**/
-	public static final String AES_SEED	= "datahub";
+	public static final String AES_SEED	= "#!(shersfy)#!";
 
 	/**
 	 * 加密
