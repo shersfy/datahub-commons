@@ -63,6 +63,8 @@ public class DBMeta extends BaseMeta{
     private long retryTimes;
 	/**重连次数**/
     private long retryTimeout;
+    /**连接管理器**/
+    private ConnectorManager manager;
     
     public DBMeta(){
     	params 		= new Properties();
@@ -75,6 +77,35 @@ public class DBMeta extends BaseMeta{
     	checkValid	= true;
     	retryTimes  = 5;
     	retryTimeout = 1*3600*1000;
+    }
+    
+    /**
+     * 连接器管理器接口
+     */
+    public interface ConnectorManager {
+        
+        /**默认最大连接数**/
+        public static int DEFAULT_MAX_CONNECTIONS = 1000;
+        
+        /**
+         * 获取允许访问的最大连接数
+         * 
+         * @return 最大连接数
+         */
+        public int getMaxConnections();
+
+        /**
+         * 使用连接
+         * 
+         *
+         */
+        public boolean useConnection();
+        /**
+         * 释放连接
+         * 
+         */
+        public boolean releaseConnection();
+
     }
 
 	public String getCode() {
@@ -249,5 +280,13 @@ public class DBMeta extends BaseMeta{
 	public void setFunctions(List<FunctionDef> functions) {
 		this.functions = functions;
 	}
+
+    public ConnectorManager getManager() {
+        return manager;
+    }
+
+    public void setManager(ConnectorManager manager) {
+        this.manager = manager;
+    }
 
 }
