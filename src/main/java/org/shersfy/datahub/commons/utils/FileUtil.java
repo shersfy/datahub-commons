@@ -33,6 +33,34 @@ public class FileUtil {
 	
 	private FileUtil(){}
 	
+	/**hdfs获取文件类型**/
+    public static enum FileType{
+        /**只获取文件**/
+        File,
+        /**只获取目录**/
+        Directory,
+        /**全都获取**/
+        All;
+        public static FileType indexOf(Integer index){
+            if(index == null){
+                return All;
+            }
+            switch (index) {
+            case 0:
+                return File;
+            case 1:
+                return Directory;
+            case 2:
+                return All;
+            default:
+                return All;
+            }
+        }
+
+        public int index(){
+            return this.ordinal();
+        }
+    }
 	 /***
      * 文件名重命名类型
      *

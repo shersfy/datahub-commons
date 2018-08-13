@@ -20,7 +20,7 @@ public class BaseMeta implements Cloneable{
 		this.name = name;
 	}
 	@Override
-	protected Object clone() throws CloneNotSupportedException {
+	public Object clone() throws CloneNotSupportedException {
 		return super.clone();
 	}
 
