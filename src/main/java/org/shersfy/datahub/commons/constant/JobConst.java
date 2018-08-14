@@ -38,6 +38,7 @@ public class JobConst {
 
     /**任务日志状态**/
     public static enum JobLogStatus{
+        Dummy,
         /**执行中。 一次任务正在执行**/
         Executing,
         /**成功。一次任务执行成功结束**/
@@ -47,15 +48,17 @@ public class JobConst {
 
         public static JobLogStatus valueOf(Integer index){
             if(index == null){
-                return Executing;
+                return Dummy;
             }
             switch (index) {
             case 1:
-                return Successful;
+                return Executing;
             case 2:
+                return Successful;
+            case 3:
                 return Failed;
             default:
-                return Executing;
+                return Dummy;
             }
         }
 
