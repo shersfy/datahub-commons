@@ -56,6 +56,22 @@ public class RowData extends Data{
 		}
 		return map;
 	}
+	
+	
+	public String toString(String separator) {
+	    separator = separator==null?"":separator;
+	    
+	    StringBuilder buff = new StringBuilder();
+	    for(int i=0; i<fields.size(); i++) {
+	        buff.append(fields.get(i).getValue());
+	        if(i==fields.size()-1) {
+	            break;
+	        }
+	        buff.append(separator);
+	    }
+	    
+	    return buff.toString();
+	}
 
 
 }

@@ -10,6 +10,7 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
+import org.shersfy.datahub.commons.utils.FileUtil.FileSizeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -180,12 +181,16 @@ public class FunUtil {
 	}
 	
 	/**
-	 * 计算StringBuffer缓冲区的大小
-	 * @param buff
-	 * @return 返回值单位为M（兆）
+	 * 计算内存大小
+	 * @param str
+	 * @param unit
+	 * @return
 	 */
-	public static double calculateListMemorySize(StringBuffer buff) {
-		return buff.length() * 2 * 8 / 1024 / 1024;//1M
+	public static double calculateMemorySize(CharSequence str, FileSizeUnit unit) {
+	    if(str==null) {
+	        return 0;
+	    }
+		return FileSizeUnit.countSize(str.toString().getBytes(CharsetUtil.getUTF8()).length, unit);
 	}
 	
 }

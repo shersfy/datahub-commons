@@ -9,6 +9,13 @@ import com.alibaba.fastjson.JSON;
 
 public class JobLogUtil {
     
+    /**普通msg**/
+    public static final int CODE_INFO = 0;
+    /**写msg到日志文件**/
+    public static final int CODE_WRITE_LOG = 1;
+    /**汇报进度**/
+    public static final int CODE_PROGRESS = 10;
+    
     private JobLogUtil() {}
     
     

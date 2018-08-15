@@ -140,7 +140,7 @@ public class FileUtil {
         }
         
         /**
-         * 计算字节数
+         * 计算字节数，大单位转为小单位字节数
          * 
          * @param len 文件大小
          * @param unit 单位
@@ -154,6 +154,21 @@ public class FileUtil {
             long blen = (long) Math.pow(1024, unit.ordinal());
             blen = len * blen;
             return blen;
+        }
+        
+        /**
+         * 字节数转换为大单位
+         * @param bytes
+         * @param unit
+         * @return 
+         */
+        public static double countSize(long bytes, FileSizeUnit unit){
+            if(unit == null || FileSizeUnit.Auto == unit){
+                return bytes;
+            }
+            
+            double size = (double)bytes/Math.pow(1024, unit.ordinal());
+            return size;
         }
     }
 
