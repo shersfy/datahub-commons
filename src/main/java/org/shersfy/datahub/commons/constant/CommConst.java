@@ -39,5 +39,8 @@ public class CommConst {
     /**系统换行符匹配**/
     public static final String LINE_SEP_REG = "\r\n|\n|\r";
     public static final String COLUMN_SEP   = "\u0001";
+    
+    /**文件锁定超时**/
+    public static final long FILE_LOCK_TIMEOUT  = 5*60*1000;
 
 }
