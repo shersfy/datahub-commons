@@ -41,7 +41,7 @@ public class LocalHostUtil {
 		}
 		if (ip.equals("127.0.0.1") || ip.equals("::1") || ip.equals("UNKNOWN")) {
 			try {
-				Process process = Runtime.getRuntime().exec("hostname -i");
+				Process process = Runtime.getRuntime().exec("hostname -I");
 				if (process.waitFor() == 0) {
 					ip = new String(IOUtils.toByteArray(process.getInputStream()), "UTF8");
 					String arr[] = ip.split(" ");
