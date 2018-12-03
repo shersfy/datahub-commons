@@ -164,6 +164,93 @@ public class HttpUtil {
 	public static HttpResult post(String url, Map<String, Object> params) {
 		return post(url, params, null);
 	}
+	
+	/**
+	 * POST Json数据
+	 * @param url
+	 * @param body
+	 * @param header
+	 * @return
+	 */
+	public static HttpResult postJson(String url, String body, Map<String, String> header) {
+		
+		HttpPost httpReq = new HttpPost(url);
+		
+		httpReq.addHeader("Content-Type", "application/json");
+		if (header != null) {
+			for (Map.Entry<String, String> entry : header.entrySet()) {
+				httpReq.addHeader(entry.getKey(), entry.getValue());
+			}
+		}
+		
+		HttpResult httpResult = new HttpResult();
+		CloseableHttpResponse httpResponse = null;
+		InputStream inputStream = null;
+		try {
+			// 不为空的时候设置参数
+			JSON.parseObject(body);
+			
+			StringEntity entity = new StringEntity(body);
+			httpReq.setEntity(entity);
+			
+			httpResponse = httpClient.execute(httpReq);
+			if (httpResponse != null) {
+				int statusCode = httpResponse.getStatusLine().getStatusCode();
+				httpResult.setCode(statusCode);
+				if (httpResponse.getEntity() != null) {
+					inputStream = httpResponse.getEntity().getContent();
+					httpResult.setBody(IOUtils.toString(inputStream));
+				}
+			}
+		} catch (Exception e) {
+			if(httpResult.getCode()==0){
+				httpResult.setCode(httpResponse!=null?httpResponse.getStatusLine().getStatusCode():ResultCode.FAIL);
+			}
+			httpResult.setBody(e.getMessage());
+			LOGGER.error(e.getMessage());
+		} finally {
+			if (inputStream != null) {
+				try {
+					inputStream.close();
+				} catch (IOException e) {
+					LOGGER.error("IOException", e);
+				}
+			}
+		}
+		
+		return httpResult;
+	}
+	
+	/**
+	 * Web service soap+x 请求
+	 * @param url 请求路径
+	 * @param xml xml 内容
+	 * @param header
+	 * @return
+	 */
+	public static HttpResult postSoap(String url, String xml, Map<String, String> header) {
+		if (header==null) {
+			header = new HashMap<>();
+		}
+		
+		xml = StringUtils.isBlank(xml) ?StringUtils.EMPTY :xml;
+		
+		String contentTypeKey = "content-type";
+		String contentTypeVal = "text/xml;charset=utf-8";
+		for (String key :header.keySet()) {
+			if(key.equalsIgnoreCase(contentTypeKey)) {
+				contentTypeKey = key;
+				contentTypeVal = header.get(key);
+				break;
+			}
+		}
+		header.put(contentTypeKey, contentTypeVal);
+		header.put("soap", "true");
+		
+		Map<String, Object> params = new HashMap<>();
+		params.put("xml", xml);
+		return post(url, params, header);
+	}
 
 	public static HttpResult send(String url, String method, List<NameValuePair> params, Map<String, String> headerMap){
 		HttpResult httpResult = new HttpResult();
@@ -188,8 +275,13 @@ public class HttpUtil {
 						httpPost.addHeader(entry.getKey(), entry.getValue());
 					}
 				}
+				// soap+xml
+				if(headerMap != null && headerMap.keySet().contains("soap")) {
+					StringEntity entity = new StringEntity(params.get(0).getValue());
+					httpPost.setEntity(entity);
+				}
 				// 不为空的时候设置参数
-				if (params != null) {
+				else if (params != null) {
 					StringEntity entity = new UrlEncodedFormEntity(params, "utf-8");
 					httpPost.setEntity(entity);
 				}
